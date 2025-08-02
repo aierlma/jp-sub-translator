@@ -1,0 +1,34 @@
+{
+    // 可以在这里控制各种生成字幕的参数, 下面这个链接里的参数都可以控制
+    // https://github.com/SYSTRAN/faster-whisper/blob/bced5f04c09967b91ced5d2d605e4c9853b2479e/faster_whisper/transcribe.py#L206
+    // 默认只在这里写了少量参数, 有需要改别的参数的话可以直接加到下面
+    "beam_size": 5,                 // 对应 pipeline 的 num_beams，使用束搜索
+    "patience": 1.0,                // 配合 beam_size 使用，可以保持默认
+
+    // --- 解决“幻听”与“重复” ---
+    "repetition_penalty": 1.1,      // 您原有的1.1就不错，可以适度惩罚重复
+    "no_repeat_ngram_size": 4,      // 禁止长度为4的词组重复，非常有效
+    "compression_ratio_threshold": 2.0, // 用压缩比过滤垃圾重复内容
+    "log_prob_threshold": -1.5,     // 提高此值可减少幻听，但可能漏掉弱语音。-1.5是很好的起点。
+
+    // --- 解决“漏听” ---
+    "no_speech_threshold": 0.5,     // 降低“无语音”判断门槛，让模型对弱语音更敏感
+    
+    // --- 控制随机性 ---
+    // 对于束搜索，temperature通常由多个值组成，模型会尝试不同的值。
+    // 如果想获得完全确定的结果，可以设为0.0。
+    // faster-whisper 默认的 [0.0, 0.2, 0.4, 0.6, 0.8, 1.0] 是一个很好的通用设置。
+    "temperature": [0.0, 0.2, 0.4, 0.6, 0.8, 1.0],
+
+    "vad_parameters": {
+        // VAD检测阈值, 0.5是一个比较均衡的值, 如果遇到漏翻可以尝试一点一点地调小(比如先试试0.45)
+        // 太大会导致漏翻, 太小会导致时间轴不准或文本质量下降(幻听)
+        "threshold": 0.3,
+    },
+
+    // 避免时间轴向前偏移过长的问题
+    "max_initial_timestamp": 30,
+
+    "repetition_penalty": 1.1,
+
+}

@@ -1,0 +1,10 @@
+models
+.env
+transcripts
+style_guide
+timestamps
+srts*
+*.srt
+*.txt
+audio
+config.ini
