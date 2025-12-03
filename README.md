@@ -25,7 +25,7 @@ conda install demucs
 
 ```
 git lfs install
-# 必须拥有海南鸡饭大佬的中文直出模型(southplus, search for 海南鸡饭 whisper)
+# 必须拥有海南鸡饭大佬的中文直出模型, You must have chickenrice0721 newest model(https://huggingface.co/chickenrice0721/whisper-large-v2-translate-zh-v0.2-st-ct2)
 git clone https://huggingface.co/litagin/anime-whisper ./models/anime
 ```
 
