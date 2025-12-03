@@ -1,3 +1,4 @@
+使用海南鸡饭或者使用Gemini(pyvideotrans)。都进行对比实验
 # Environment
 ```
 conda create -n subworkflow python=3.10 -y                                                                      
